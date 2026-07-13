@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerta Porta Vermelha</title>
+<style>
+body {
+background: #111;
+color: white;
+font-family: Arial, sans-serif;
+text-align: center;
+padding: 30px 15px;
+}
+h1 { color: #ff3b30; }
+button {
+background: #ff3b30;
+color: white;
+border: 0;
+border-radius: 12px;
+padding: 18px 25px;
+font-size: 20px;
+cursor: pointer;
+}
+#status {
+margin-top: 25px;
+font-size: 22px;
+}
+</style>
+</head>
+<body>
+
+<h1>🚪 Alerta Porta Vermelha</h1>
+<p>Sistema de monitoramento</p>
+
+<button onclick="ativarAlerta()">TESTAR ALERTA</button>
+
+<div id="status">Sistema aguardando...</div>
+
+<script>
+function ativarAlerta() {
+document.getElementById("status").innerHTML =
+"🚨 ALERTA! A PORTA VERMELHA FOI ABERTA!";
+}
+</script>
+
+</body>
+</html>
