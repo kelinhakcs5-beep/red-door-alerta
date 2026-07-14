@@ -1,31 +1,32 @@
 const WebSocket = require("ws");
 
 const WS_URL = "wss://live-api.casinoscores.com/ws";
-const ws = new WebSocket(WS_URL, "v12.stomp", {
-headers: { Origin: "https://www.casino.org" }
-});
 
-function sendFrame(command, headers = {}) {
-let frame = command + "\n";
-for (const [key, value] of Object.entries(headers)) {
-frame += `${key}:${value}\n`;
+console.log("Iniciando conexao com o Red Door...");
+
+const ws = new WebSocket(WS_URL, "v12.stomp", {
+headers: {
+Origin: "https://www.casino.org"
 }
-frame += "\n\0";
-ws.send(frame);
-}
+});
 
 ws.on("open", () => {
 console.log("WebSocket conectado!");
 
-sendFrame("CONNECT", {
-"accept-version": "1.2",
-"heart-beat": "15000,15000"
-});
+ws.send(
+"CONNECT\n" +
+"accept-version:1.2\n" +
+"heart-beat:15000,15000\n\n\0"
+);
 });
 
 ws.on("message", (data) => {
-const msg = data.toString();
+const mensagem = data.toString();
 
-if (msg.startsWith("CONNECTED")) {
-console.log("STOMP conectado!");
+console.log("Mensagem recebida:", mensagem);
+});
+
+ws.on("error", (erro) => {
+console.error("Erro no WebSocket:", erro.message);
+});
   
