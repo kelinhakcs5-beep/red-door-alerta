@@ -28,3 +28,4 @@ const msg = data.toString();
 
 if (msg.startsWith("CONNECTED")) {
 console.log("STOMP conectado!");
+  
